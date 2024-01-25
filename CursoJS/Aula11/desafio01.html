@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio001</title>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <h1>Nacionalidade</h1>
+
+    Qual a sua nacionalidade? <input type="text" id="txtp">
+
+    <input type="button" id="botao" value="Nacionalidade">
+
+    <div id="res"></div>
+
+    <script>
+        var botao = document.querySelector('#botao')
+        botao.addEventListener('click',clicar)
+        var txt = document.querySelector(`input#txtp`)
+        var res = document.querySelector('#res')
+        
+
+        function clicar(){
+
+            txt.value = txt.value.toUpperCase()
+
+
+            if(txt.value == 'BR'){
+                res.innerHTML = `<p>Você é brasileiro</p>`
+            }else{
+                res.innerHTML = `<p>Você não é brasileiro mora em ${txt.value}</p>`
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
