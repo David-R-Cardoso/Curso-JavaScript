@@ -1,31 +1,68 @@
 var num = document.querySelector('#txtn')
-var val = document.querySelector('#selval')
+var lista = document.querySelector('#selval')
 var res = document.querySelector('#res')
-var n = [] 
+var valores = [] 
+
+function isNumero(x){
+    if(Number(x) >= 1 && Number(x <= 100) ){
+        return true
+    } else{
+        return false
+    }
+}
+
+function isLista(x, l){
+    if (l.indexOf(Number(x)) != -1){
+        return true
+    } else{
+        return false
+    }
+}
 
 function add(){
-    if(num.value < 1 || num.value > 100){
-        alert('Número inválido ou já existente')
-    } else{
+    if(isNumero(num.value) && !isLista(num.value, valores)){
         res.innerHTML = ''
 
-        n.push(Number(num.value))
+        valores.push(Number(num.value))
 
         let t = document.createElement('Option')
         t.text = num.value
-        val.appendChild (t)
+        lista.appendChild (t)
+
+    } else{
+        alert('Número inválido ou já existente')
     }
 }
 
 function final(){
     res.innerHTML = ''
 
-    res.innerHTML += `Temos ${n.length} números cadastrados <br>`
-    res.innerHTML += `O maior valor foi ? <br>`
-    res.innerHTML += `O menor valor foi ? <br>`
-    res.innerHTML += `A soma é ? <br>`
+    res.innerHTML += `Temos ${valores.length} números cadastrados <br>`
+    res.innerHTML += `O maior valor foi ${maior()} <br>`
+    res.innerHTML += `O menor valor foi ${menor()} <br>`
+    res.innerHTML += `A soma de todos os valores é ${soma()} <br>`
+    res.innerHTML += `A média dos valores é ${med()} <br>`
+}
 
-    for(let c in n){
-        res.innerHTML += `${n[c]}`
+function maior(){
+    var max = valores.reduce((a,b)=> Math.max(a, b))
+    return max
+}
+
+function menor(){
+    var min = valores.reduce((a,b)=> Math.min(a, b))
+    return min
+}
+
+function med(){
+    let m = soma()/valores.length
+    return m
+}
+
+function soma(){
+    var s = 0
+        for(let c in valores){
+            s += valores[c]
     }
+    return (s)
 }
