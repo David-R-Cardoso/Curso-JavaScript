@@ -25,23 +25,31 @@ function add(){
 
         valores.push(Number(num.value))
 
-        let t = document.createElement('Option')
-        t.text = num.value
-        lista.appendChild (t)
+        let tab = document.createElement('Option')
+        tab.text = num.value
+        lista.appendChild (tab)
 
     } else{
         alert('Número inválido ou já existente')
     }
+
+    num.value = ''
+    num.focus() // o foco fica no campo de texto 
 }
 
 function final(){
-    res.innerHTML = ''
+    if (valores.length == 0){
+        alert('Adicione valores antes de finalizar')
+    }else{
+        res.innerHTML =''
 
-    res.innerHTML += `Temos ${valores.length} números cadastrados <br>`
-    res.innerHTML += `O maior valor foi ${maior()} <br>`
-    res.innerHTML += `O menor valor foi ${menor()} <br>`
-    res.innerHTML += `A soma de todos os valores é ${soma()} <br>`
-    res.innerHTML += `A média dos valores é ${med()} <br>`
+        res.innerHTML += `Temos ${valores.length} números cadastrados <br>`
+        res.innerHTML += `O maior valor foi ${maior()} <br>`
+        res.innerHTML += `O menor valor foi ${menor()} <br>`
+        res.innerHTML += `A soma de todos os valores é ${soma()} <br>`
+        res.innerHTML += `A média dos valores é ${med()} <br>`
+    }
+
 }
 
 function maior(){
